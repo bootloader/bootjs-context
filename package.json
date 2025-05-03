@@ -1,6 +1,6 @@
 {
   "name": "@bootloader/context",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bootloader/utils": "^1.0.14"
+    "@bootloader/utils": "^1.0.15"
   },
   "bugs": {
     "url": "https://github.com/bootloader/bootjs-context/issues"
