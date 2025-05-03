@@ -1,0 +1,22 @@
+{
+  "name": "@bootloader/context",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootloader/bootjs-context.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bootloader/utils": "^1.0.14"
+  },
+  "bugs": {
+    "url": "https://github.com/bootloader/bootjs-context/issues"
+  },
+  "homepage": "https://github.com/bootloader/bootjs-context#readme"
+}
