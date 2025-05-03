@@ -1,7 +1,7 @@
 const { AsyncLocalStorage } = require('async_hooks');
 
 //const request = require('./request');
-const { request } = require('@bootloader/utils');
+const request = require('@bootloader/utils/request');
 
 const crypto = require('crypto');
 
