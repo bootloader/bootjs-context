@@ -40,7 +40,8 @@ class Context {
     return (req, res, next) => {
       this.run(async () => {
         let requestContext = request.context(req);
-        let tenant = requestContext.headerOrParam('tnt');
+        console.log("req.context", req.context);
+        let tenant = req.context || requestContext.headerOrParam('tnt');
         let traceId = requestContext.headerOrParam('x-trace-id');
         await fun(this.useDefaults({ tenant, traceId }));
         next();
