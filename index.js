@@ -15,8 +15,8 @@ class Context {
   }
 
   /** Starts a new context for the request */
-  run(fn) {
-    if (this.asyncLocalStorage.getStore()) {
+  run(fn,{ forceNew = false } = {}) {
+    if (this.asyncLocalStorage.getStore() && !forceNew) {
       return fn(); // Continue using the existing context
     }
     let mp = new Map();
@@ -35,7 +35,13 @@ class Context {
     return { tenant, traceId };
   }
 
-  start(...args) {
+  /**
+   * This is for HTTP Request.
+   * 
+   * @param  {...any} args 
+   * @returns 
+   */
+  initHttpRequest(...args) {
     let fun = args.find(arg => typeof arg == 'function') || (() => {});
     return (req, res, next) => {
       this.run(async () => {
@@ -45,12 +51,17 @@ class Context {
         let traceId = requestContext.headerOrParam('x-trace-id');
         await fun(this.useDefaults({ tenant, traceId }));
         next();
-      });
+      },{forceNew: true});
     };
   }
-
+  /**
+   * For http request
+   * 
+   * @param {*} callback 
+   * @returns 
+   */
   withRequest(callback) {
-    return this.start(callback);
+    return this.initHttpRequest(callback);
   }
 
   init(...args) {
@@ -65,6 +76,7 @@ class Context {
   set(key, value) {
     const store = this.asyncLocalStorage.getStore();
     if (store) store.set(key, value);
+    else console.log(`NOTFOUND.  !!!!!!!!!!    Context.set: Setting key "${key}" to value "${value}" in context store.`);
   }
 
   /** Get a value from the current request context */
