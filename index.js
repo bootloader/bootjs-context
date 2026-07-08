@@ -55,6 +55,12 @@ class Context {
     };
   }
   /**
+   *  @deprecated method not required, its confusing name, use initHttpRequest directly
+   */
+  start(...args){
+    return this.initHttpRequest(...args)
+  }
+  /**
    * For http request
    * 
    * @param {*} callback 
